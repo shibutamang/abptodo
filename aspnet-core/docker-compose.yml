@@ -1,0 +1,19 @@
+version: '3.4'
+
+services: 
+    apiservice:
+        container_name: todoapi
+        build: 
+            context: .
+            dockerfile: src/abptodo.HttpApi.Host/Dockerfile
+        ports: 
+          - "8082:80"
+    uiservice:
+        container_name: todoui
+        build: 
+            context: .
+            dockerfile: ../angular/Dockerfile
+        ports: 
+          - "8081:80"
+        depends_on: 
+          - apiservice
